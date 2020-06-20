@@ -33,11 +33,11 @@ window.onload = function () {
 		pokemon = generateRandomPokemon();
 	} else {
 		if (pokemon != parseInt(pokemon).toString()) {
-			window.location.href = "/pokemon-page/pokemon.html?pokemon=" + parseInt(pokemon);
+			document.location.replace("pokemon.html?pokemon=" + parseInt(pokemon));
 		} else if (pokemon < 1) {
-			window.location.href = "/pokemon-page/pokemon.html?pokemon=1";
+			document.location.replace("pokemon.html?pokemon=1");
 		} else if (pokemon > 809) {
-			window.location.href = "/pokemon-page/pokemon.html?pokemon=809";
+			document.location.replace("pokemon.html?pokemon=809");
 		}
 		pokemon = JSON.parse(unprocessedPokedex)[pokemon - 1];
 	}
