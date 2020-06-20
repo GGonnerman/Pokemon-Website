@@ -27,17 +27,14 @@ window.onload = function () {
 
 	pokemon = getQueryVariable("pokemon");
 
-
-	//TODO: under 1 = firstpokemon, over max = last, invalid = home page
 	if (pokemon == "random") {
 		pokemon = generateRandomPokemon();
 	} else {
-		if (pokemon != parseInt(pokemon).toString()) {
-			document.location.replace("pokemon.html?pokemon=" + parseInt(pokemon));
-		} else if (pokemon < 1) {
-			document.location.replace("pokemon.html?pokemon=1");
-		} else if (pokemon > 809) {
-			document.location.replace("pokemon.html?pokemon=809");
+		pokemon = parseInt(pokemon)
+		if ( isNaN(pokemon) || pokemon < 1 ) { // If id doesnt exist or is less than 1
+			pokemon = 1;
+		} else if ( pokemon > 809 ) { // If id is above max
+			pokemon = 809;
 		}
 		pokemon = JSON.parse(unprocessedPokedex)[pokemon - 1];
 	}
