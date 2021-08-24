@@ -146,6 +146,7 @@ body {
 
 #evolutionLine {
 	margin: auto;
+	z-index: 1;
 }
 
 #evolutionLine img {
