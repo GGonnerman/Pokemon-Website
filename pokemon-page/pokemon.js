@@ -234,7 +234,7 @@ function checkEvolutionLength() {
 		evolutionLine.style.gridColumn = "3 / 6";
 	} else {
 		get("statsTableWrapper").style.gridRow = "2 / 3";
-		get("fullImageWrapper").style.gridColumn = "1 / 6";
+		//get("fullImageWrapper").style.gridColumn = "1 / 6";
 		evolutionLine.style.gridColumn = "1 / 6";
 	}
 }
