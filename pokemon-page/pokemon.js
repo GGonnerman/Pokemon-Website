@@ -67,8 +67,6 @@ window.onload = function () {
 
 	setBackgroundColor();
 
-	setAnimatedSpriteLocation();
-
 	createStatsCanvas();
 
 	correctTextSize();
@@ -79,11 +77,16 @@ window.onload = function () {
 
 	initializeButtons();
 
+	setAnimatedSpriteLocation();
+
+	setTimeout(() => setAnimatedSpriteLocation(), 50);
+
 	window.addEventListener("resize", function () {
 		createStatsCanvas();
 		correctTextSize();
 		checkEvolutionLength();
 		checkFullImageHeight();
+		setAnimatedSpriteLocation();
 	}, true);
 }
 
@@ -93,12 +96,12 @@ function correctTextSize() {
 
 	let fullHeight = descriptionDiv.clientHeight * .5;
 	let height = description.scrollHeight;
-	let currSize = 1;
+	let currSize = Number(description.style.fontSize.slice(0, -2));
 
 	if (height > fullHeight) {
 
-		while (fullHeight > height) {
-			currSize += 0.1;
+		while (height > fullHeight) {
+			currSize -= 0.1;
 			description.style.fontSize = `${currSize}px`;
 			height = description.clientHeight;
 		}
@@ -127,6 +130,11 @@ function p(prop) {
 	return pokedex[Math.floor(Math.random() * 809) + 1][prop]
 }
 
+function as(prop) {
+	return pokedex[Math.floor(Math.random() * 648) + 1][prop]
+}
+
+
 function generateRandomPokemon() {
 	return {
 		"name": p("name"),
@@ -134,7 +142,7 @@ function generateRandomPokemon() {
 		"images": {
 			"full": p("images")["full"],
 			"sprite": p("images")["sprite"],
-			"animatedSprite": p("images")["animatedSprite"],
+			"animatedSprite": as("images")["animatedSprite"],
 			"thumbnail": p("images")["thumbnail"]
 		},
 		"description": p("description"),
@@ -301,11 +309,17 @@ function createBackgroundIcons() {
 
 function setAnimatedSpriteLocation() {
 	let sprite = document.getElementById("animatedSprite");
+	let text = document.getElementById("title");
+	let wrapper = document.getElementById("wrapper");
 	let horizSpace = 10;
 	let vertSpace = 0;
 	let span = document.getElementById("title");
-	sprite.style.bottom = `${window.innerHeight - span.getBoundingClientRect().bottom + vertSpace}px`;
-	sprite.style.left = `${span.getBoundingClientRect().right + horizSpace}px`;
+	// No clue what this was
+	//sprite.style.bottom = `${window.innerHeight - span.getBoundingClientRect().bottom + vertSpace}px`;
+    console.log(sprite);
+    console.log(sprite.offsetHeight);
+	sprite.style.bottom = `calc(2.0em + ${wrapper.offsetHeight}px - ${text.offsetHeight}px)`;
+	sprite.style.left = `calc(11.5em + ${text.offsetWidth}px`;
 }
 
 function createStatsCanvas() {
