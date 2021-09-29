@@ -13,7 +13,7 @@ window.onload = function () {
 }
 
 function randomPokemon() {
-	window.location.href = `/pokemon-page/pokemon.html?pokemon=${Math.floor(Math.random() * 809) + 1}`;
+	window.location.href = `/beta/pokemon-page/pokemon.html?pokemon=${Math.floor(Math.random() * 809) + 1}`;
 }
 
 function searchPokemon() {
@@ -62,7 +62,7 @@ function loadPokemon(filter) {
 
 		// Create link
 		let nameUrl = document.createElement("a");
-		nameUrl.href = `/pokemon-page/pokemon.html?pokemon=${pokemon.id}`;
+		nameUrl.href = `/beta/pokemon-page/pokemon.html?pokemon=${pokemon.id}`;
 
 		// Image wrapper
 		let imageWrapper = document.createElement("div");
